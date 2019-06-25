@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Another test to you</title>
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{ message }}
+    <div v-bind:title="title" v-if="visible">
+      hover here
+    </div>
+  </div>
+  
+  <div id="app2">
+    <ol>
+      <li 
+        v-for="todo in todos" 
+        v-on:click="yo"
+      >
+        {{ todo.text }}
+      </li>
+    </ol>
+  </div>
+  
+  <div id="app3">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        visible: true,
+        message: 'Hello',
+        title: `Look, today is ${new Date().toLocaleString()}`
+      }
+    })
+
+    const app2 = new Vue({
+      el: '#app2',
+      data: {
+        yo: function(ev) { console.log(ev) },
+        todos: [
+          { text: '1' },
+          { text: '2' },
+          { text: '3' },
+        ] 
+      }
+    })
+
+    const app3 = new Vue({
+      el: '#app3',
+      data: {
+        message: ''
+      }
+    })
+  </script>
+
+</body>
+</html>
