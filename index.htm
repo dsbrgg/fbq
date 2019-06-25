@@ -39,8 +39,18 @@
     <input v-model="message">
   </div>
 
+  <div id="app4">
+    <span 
+      v-bind:id="id" 
+      v-if="visible"
+    >
+      Test {{ id + 1 }}
+   </span>
+   <button v-on:click="hide">Test</button>
+  </div>
+  
   <script src="./components/todoItem.js"></script>
-
+  
   <script>
     const app = new Vue({
       el: '#app',
@@ -66,7 +76,24 @@
     const app3 = new Vue({
       el: '#app3',
       data: {
-        message: ''
+        message: '',
+        test: 20
+      },
+      created: function() {
+        console.log('Lifecycle Hook!', this.test)
+      }
+    })
+
+    const app4 = new Vue({
+      el: '#app4',
+      data: {
+        id: 1,
+        visible: true
+      },
+      methods: {
+        hide: function() {
+          this.visible = !this.visible
+        }
       }
     })
   </script>
